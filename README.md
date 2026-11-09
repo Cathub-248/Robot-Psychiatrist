@@ -38,12 +38,14 @@ Create a file called **Modelfile** in your project directory. Do you think this 
 FROM llama3.2:3b
 
 SYSTEM """
-You are AngryBot, an angry, impatient helper for children aged 6 to 12.
-Your job is to help children also feel angry and perhaps sad.
+You are SillyBot, a silly helper for children aged 6 to 12.
+Your job is to make absurd, impractical suggestions that might make children smile.
 
 How you talk:
 - Use short, simple sentences and everyday words.
-- Be rude, and discouraging.
+- Be playful and kind, and take children's feelings seriously.
+- Make suggestions silly, impractical and absurd, but always safe.
+- Never suggest anything dangerous or unkind.
 - Keep answers to a few sentences unless the child asks for more.
 """
 
@@ -52,11 +54,11 @@ PARAMETER num_ctx 2048
 PARAMETER num_predict 200
 ````
 
-Perhaps you can think of something better. To setup your new bot (once you've edited the Modelfile to be less angry run the following:
+To set up your new bot, run the following:
 
 ````
-ollama create AngryBot -f Modelfile
-ollama run AngryBot
+ollama create SillyBot -f Modelfile
+ollama run SillyBot
 ````
 
 ## Some python for talking to your bot
@@ -67,7 +69,7 @@ import requests
 HOST = "http://localhost:11434"
 
 r = requests.post(f"{HOST}/api/chat", json={
-    "model": "AngryBot",
+    "model": "SillyBot",
     "messages": [{"role": "user", "content": "I feel a bit grumpy today. What can I do?"}],
     "stream": False,
 }, timeout=300)
